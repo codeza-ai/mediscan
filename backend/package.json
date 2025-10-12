@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Contains the backend logic for the Healthcare Symptom checker app assigned as a task.",
+  "license": "ISC",
+  "author": "Darshan Odedara",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.24.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
