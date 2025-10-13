@@ -1,25 +1,25 @@
 const { GoogleGenAI } = require("@google/genai");
-
 const API_KEY = process.env.GEMINI_API_KEY
+const generationConfig = require('../gemini.config.js');
+
 if (!API_KEY) {
     console.warn(
-        'No Gemini API key found in GEMINI_API_KEY/GOOGLE_API_KEY/GENAI_API_KEY.\n' +
-        'The @google/genai client will fall back to Application Default Credentials (ADC).\n' +
-        'To use an API key instead (recommended for local development), set GEMINI_API_KEY.'
+        'No Gemini API key found in process.env.GEMINI_API_KEY.'
     );
 }
 
 const ai = new GoogleGenAI(API_KEY ? { API_KEY } : {});
-
 async function askGemini(content, model) {
+    const prompt = `Based on these symptoms: "${content}", suggest possible conditions and next steps with educational disclaimer.`;
     try {
         const response = await ai.models.generateContent({
             model: model,
-            contents: content,
+            contents: prompt,
+            config: generationConfig
         });
-        console.log(response.text);
-        return response.text;
-    }catch(error){
+        const data = JSON.parse(response.text);
+        return data;
+    } catch (error) {
         console.error("Error in askGemini:", error);
         throw error;
     }
