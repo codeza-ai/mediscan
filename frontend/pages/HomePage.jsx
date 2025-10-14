@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 const HomePage = () => {
     return (
-        <div className="min-h-screen bgs-gray-50">
+        <div className="min-h-screen bg-gray-50">
             <Header />
             <main className="py-8">
                 <SymptomChecker />

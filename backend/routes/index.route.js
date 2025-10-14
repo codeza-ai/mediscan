@@ -3,10 +3,13 @@ const router = express.Router();
 
 const {
     normalRequest,
-    proRequest
+    proRequest,
+    clearChatHistory,
+    getChatHistory
 } = require('../controllers/index.controller');
 
 router.post("/free", normalRequest);
 router.post("/pro", proRequest);
+router.delete("/history", clearChatHistory).get("/history",getChatHistory);
 
 module.exports = router;

@@ -10,6 +10,18 @@ const ResultDisplay = ({ result }) => {
             </div>
 
             <div className="p-6 space-y-6">
+                {result.disclaimer && (
+                    <div className="border-t border-gray-200 pt-6">
+                        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 px-4 py-4 rounded-lg border border-yellow-200">
+                            <div className="flex items-start">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-yellow-800 mb-1">Important Medical Disclaimer</h4>
+                                    <p className="text-sm text-yellow-700 leading-relaxed">{result.disclaimer}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {result.conditions && result.conditions.length > 0 && (
                     <div>
                         <h3 className="text-lg font-medium text-gray-900 mb-3 flex items-center">
@@ -31,18 +43,6 @@ const ResultDisplay = ({ result }) => {
                         </h3>
                         <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-4 rounded-lg border border-green-200">
                             <p className="text-green-900 leading-relaxed">{result.next_steps}</p>
-                        </div>
-                    </div>
-                )}
-                {result.disclaimer && (
-                    <div className="border-t border-gray-200 pt-6">
-                        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 px-4 py-4 rounded-lg border border-yellow-200">
-                            <div className="flex items-start">
-                                <div>
-                                    <h4 className="text-sm font-semibold text-yellow-800 mb-1">Important Medical Disclaimer</h4>
-                                    <p className="text-sm text-yellow-700 leading-relaxed">{result.disclaimer}</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 )}
