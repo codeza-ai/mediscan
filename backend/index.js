@@ -6,10 +6,13 @@ const PORT = process.env.PORT || 3000;
 const dotenv = require('dotenv');
 // Load environment variables from .env file
 dotenv.config();
-// Allow CORS for all origins
-app.use(cors(
-    true
-));
+
+// Allow origin requests from specified domains
+app.use(cors({
+    origin: [
+        process.env.CLIENT_BASE_URL
+    ]
+}));
 
 // Parse JSON request bodies
 app.use(express.json());
