@@ -10,6 +10,7 @@ const {
 
 router.post("/free", normalRequest);
 router.post("/pro", proRequest);
-router.delete("/history", clearChatHistory).get("/history",getChatHistory);
+router.delete("/history", clearChatHistory);
+router.get("/history", getChatHistory);
 
 module.exports = router;

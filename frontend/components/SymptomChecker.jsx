@@ -4,8 +4,6 @@ import Alert from './Alert';
 import LoadingSpinner from './LoadingSpinner';
 import ResultDisplay from './ResultDisplay';
 import ModelToggle from './ModelToggle';
-import ModelInfo from './ModelInfo';
-
 const SymptomChecker = () => {
     const [symptoms, setSymptoms] = useState('');
     const [loading, setLoading] = useState(false);
@@ -16,7 +14,7 @@ const SymptomChecker = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!symptoms.trim()) {
+        if(!symptoms.trim()){
             setError('Please describe your symptoms');
             return;
         }
@@ -25,15 +23,15 @@ const SymptomChecker = () => {
         setError('');
         setResult(null);
 
-        try {
+        try{
             const result = isProModel 
                 ? await symptomAnalysisAPI.analyzePro(symptoms.trim())
                 : await symptomAnalysisAPI.analyzeFree(symptoms.trim());
 
-            if (result) {
+            if(result){
                 setResult(result);
             }
-        } catch (err) {
+        }catch(err){
             console.error('Error analyzing symptoms:', err);
             setError(err.message || 'Failed to analyze symptoms. Please try again.');
         } finally {
@@ -72,7 +70,6 @@ const SymptomChecker = () => {
                         onToggle={handleModelToggle}
                         disabled={loading}
                     />
-                    <ModelInfo isProModel={isProModel} />
 
                     <div>
                         <label htmlFor="symptoms" className="block text-sm font-medium text-gray-700 mb-2">
@@ -104,7 +101,7 @@ const SymptomChecker = () => {
                         >
                             {loading ? (
                                 <LoadingSpinner text={`Analyzing with ${isProModel ? 'Pro' : 'Free'} model...`} />
-                            ) : (
+                            ):(
                                 `Analyze with ${isProModel ? 'Pro' : 'Free'} Model`
                             )}
                         </button>

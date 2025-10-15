@@ -25,10 +25,10 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (error.code === 'ECONNABORTED') {
+        if(error.code === 'ECONNABORTED'){
             error.message = 'Request timed out. Please try again.';
-        } else if (error.response) {
-            switch (error.response.status) {
+        }else if(error.response){
+            switch (error.response.status){
                 case 400:
                     error.message = 'Invalid request. Please check your input.';
                     break;
@@ -41,7 +41,7 @@ api.interceptors.response.use(
                 default:
                     error.message = 'An unexpected error occurred.';
             }
-        } else if (error.request) {
+        }else if(error.request){
             error.message = 'Unable to connect to server. Please check your internet connection.';
         }
 
@@ -57,6 +57,17 @@ export const symptomAnalysisAPI = {
     },
     analyzePro: async (symptoms) => {
         const response = await api.post('/pro', { message : symptoms });
+        return response.data;
+    },
+};
+
+export const historyAPI = {
+    getHistory: async () => {
+        const response = await api.get('/history');
+        return response.data;
+    },
+    deleteHistory: async () => {
+        const response = await api.delete('/history');
         return response.data;
     },
 };

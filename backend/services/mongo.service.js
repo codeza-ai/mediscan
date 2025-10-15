@@ -4,34 +4,34 @@ require('dotenv').config();
 const Query = require('../models/query');
 
 const connectToMongo = async () => {
-    try {
+    try{
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
         console.log('Connected to MongoDB');
-    } catch (error) {
+    }catch(error){
         console.error('Error connecting to MongoDB:', error);
         process.exit(1);
     }
 };
 
 const addQueryResponse = async (queryText, conditions, nextSteps, modelType) => {
-    try {
+    try{
         const newEntry = new Query({ queryText, conditions, nextSteps, modelType });
         await newEntry.save();
         return 'Query response added successfully.';
-    } catch (error) {
+    }catch(error){
         console.error('Error adding query response:', error);
         return 'Failed to add query response.';
     }
 };
 
 const clearHistory = async () => {
-    try {
+    try{
         await Query.deleteMany({});
         return 'History cleared successfully.';
-    } catch (error) {
+    }catch(error){
         console.error('Error clearing history:', error);
         return 'Failed to clear history.';
     }

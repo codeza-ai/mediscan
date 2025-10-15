@@ -1,5 +1,5 @@
 const ResultDisplay = ({ result }) => {
-    if (!result) return null;
+    if(!result) return null;
 
     return (
         <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
